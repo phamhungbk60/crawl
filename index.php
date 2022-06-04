@@ -1,28 +1,15 @@
-<?php 
-    $content = file_get_contents("https://vnexpress.net/hlv-park-toi-muon-gianh-lai-aff-cup-tu-thai-lan-4467858.html");
-    
-    $pattern1 = '#<span class="date">(.*?)</span>#si';
-    $pattern2 = '#<h1 class="title-detail">(.*?)</h1>#si';
-    $pattern3 = '#<p class="description">(.*?)</p>#si';
-    $pattern4 = '#<p class="Normal">(.*?)</p>#si';
-
-    preg_match($pattern1, $content, $date);
-    preg_match($pattern2, $content, $title);
-    preg_match($pattern3, $content, $description);
-    preg_match_all($pattern4, $content, $details);
-
-    echo '<pre>';
-    print_r($date);
-    echo '</pre>';
-
-    echo '<pre>';
-    print_r($title);
-    echo '</pre>';
-
-    echo '<pre>';
-    print_r($description);
-    echo '</pre>';
-
-    echo '<pre>';
-    print_r($details);
-    echo '</pre>';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Craw</title>
+</head>
+<body>
+    <!-- FORM GET CONTENT FROM LINK -->
+    <form action="" method="GET">
+        <label for="link"> Paste the link </label>
+        <input type="text" id="link" name="link" value="<?php echo $link ?>" />
+</body>
+</html>
