@@ -1,6 +1,6 @@
 <?php
 // From URL to get webpage contents
-$url = "https://vnexpress.net/kien-nghi-som-huong-dan-phat-tu-lai-xe-say-ruou-4471913.html";
+$url = "https://vnexpress.net/ba-nuoc-cam-may-bay-cho-ngoai-truong-nga-4472525.html";
 
 // Initialize a CURL session.
 $ch = curl_init();
@@ -36,7 +36,7 @@ var_dump($description[0]);
 
 // Get the details
 
-$regex_details = '#<p class="Normal">(.*?)</p>#si'; 
+$regex_details = '#<p class="Normal">(.*?)</p>#si';
 
-preg_match($regex_details, $result, $details);
+preg_match_all($regex_details, $result, $details);
 var_dump($details[0]);
