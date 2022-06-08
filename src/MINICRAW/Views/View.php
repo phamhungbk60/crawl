@@ -7,12 +7,25 @@
     <title>Mini Craw</title>
 </head>
 <body>
-    <form>
+<form class="row_form" method="post" novalidate="novalidate">
         <div class="form-group">
-          <label for="exampleInputEmail1">Enter the link here</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <label for="urlPage">Enter the link here</label>
+          <input type="text" class="form-control" id="urlPage" name="url_page" placeholder="Enter link">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="button_save" class="btn btn-primary">Submit</button>
       </form>
 </body>
 </html>
+
+<?php
+      if(isset($_POST['button_save'])){
+        if(isset($_POST['url_page'])){
+            $url_page = $_POST['url_page'];
+echo $url_page;
+        }
+        else
+        {
+            $url_page = " ";
+        }
+      }
+?>
