@@ -1,30 +1,20 @@
 <?php
 
-class Config
-{    
+class Config {    
     const SERVERNAME = "localhost";
     const USERNAME="minicraw";
     const PASSWORD = "2002";
     const DBNAME ="minicraw";
 
     public function connect(){
-        /** 
-         * Connect Database
-         * */ 
+        // Connect Database
         $connect = mysqli_connect(self::SERVERNAME,self::USERNAME,self::PASSWORD,self::DBNAME);
         mysqli_set_charset($connect,"uft8");
 
-        /**
-         * Process Data insert
-         */
+        // Data insertion procedure
 
-
-        
-        
-         /**
-         * Get Data Title
-        */
-        $url = "https://vnexpress.net/ba-nuoc-cam-may-bay-cho-ngoai-truong-nga-4472525.html";
+        // Get Data Title
+        $url = "https://vnexpress.net/hai-nam-bung-no-cua-thi-truong-trai-phieu-doanh-nghiep-4472919.html";
         // Initialize a CURL session.
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -34,57 +24,33 @@ class Config
         $regex_title = '#<h1 class="title-detail">(.*?)</h1>#si';
         preg_match($regex_title, $result, $title);
 
-        /**
-         * Get Data description
-         */
+        
+        // Get Data description
         $regex_description = '#<p class="description">(.*?)</p>#si';
-
         preg_match($regex_description, $result, $description);
-        // var_dump($description);
-        // die();
-
-        /**
-         * Get Data Date
-         */
-        // $regex_date = '#<span class="date">(.*?)</span>#si';
-
-        // preg_match($regex_date, $result, $date);
-        // var_dump($date);
-        // die();
         
-        /**
-         * Get Data Details
-         */
 
+        // Get Data Date
+        $regex_date = '#<span class="date">(.*?)</span>#si';
+        preg_match($regex_date, $result, $date);
+        
+        // Get Data Details
         $regex_details = '#<p class="Normal">(.*?)</p>#si';
-
         preg_match_all($regex_details, $result, $details);
-
-        foreach($details as $detail){
-            // var_dump($detail[0]);
-            // die();    
         
-
-        /**
-         * Test Insert data
-         */
-        $date = '2022-05-29';
         
-        $sql = sprintf("INSERT INTO Data (title, description, date, details) VALUES ('%s', '%s', '%s', '%s')", $title[0], $description[0], $date, $detail[1]);
-    }
+        
+        $sql = sprintf("INSERT INTO Data (title, description, date, details) 
+        VALUES ('%s', '%s', '%s', '%s')", $title[0], $description[0], $date[0], implode (" ",$details[0]));
 
-        /**
-         * Check Data connect
-         */
+        // Check Data connect
         if ($connect->query($sql) === TRUE) {
             echo "New record created successfully";
           } else {
             echo "Error: " . $sql . "<br>" . $connect->error;
           }
         $connect->close();
-
     }
 }
-
 $CONSO = new Config;
 $CONSO->connect();

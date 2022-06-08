@@ -13,7 +13,7 @@ Class Client extends Config
     {
     $title = "This is title of vnexpress";
     $description = "description VN 222";
-    $date = '2022-05-29';
+    $date = '2022-05-30';
     $details = 'Details description VNexpress';    
     
     $sql = sprintf("INSERT INTO Data (title, description, date, details) VALUES ('%s', '%s', '%s', '%s')", $title, $description, $date, $details);
