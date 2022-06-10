@@ -1,7 +1,8 @@
 <?php
-require './Views/View.php';
+require '../Models/GetVnexpressData.php';
+require '../Views/View.php';
 
-class ParserVietnamnet
+class ParserVnexpress
 {
     public function __construct()
     {
@@ -19,22 +20,21 @@ class ParserVietnamnet
         // Grab URL and pass it to the variable
         curl_setopt($ch, CURLOPT_URL, $url);
         $result = curl_exec($ch);
-        $regex_title = '#<h1 class="title .+?">(.*?)</h1>#si';
+        $regex_title = '#<h1 class="title-detail">(.*?)</h1>#si';
         preg_match($regex_title, $result, $title);
 
         // Get Data description
-        $regex_description = '#<div class="bold ArticleLead"><p>(.*?)</p></div>#si';
+        $regex_description = '#<p class="description">(.*?)</p>#si';
         preg_match($regex_description, $result, $description);
         
         // Get Data Date
-        $regex_date = '#<span class="ArticleDate">(.*?)</span>#si';
+        $regex_date = '#<span class="date">(.*?)</span>#si';
         preg_match($regex_date, $result, $date);
         
         // Get Data Details
-        $regex_details = '#<p class="t-j">(.*?)</p>#si';
+        $regex_details = '#<p class="Normal">(.*?)</p>#si';
         preg_match_all($regex_details, $result, $details);
-
     }
 }
-$controller = new ParserVietnamnet;
+$controller = new ParserVnexpress;
 $controller->execute();
