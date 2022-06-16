@@ -1,4 +1,6 @@
 <?php
+namespace Interfaces;
+
 interface Parser
 {
     public function getDataUrl();
@@ -10,5 +12,4 @@ interface Parser
     public function getDataDate();
 
     public function getDataDetails();
-
 }

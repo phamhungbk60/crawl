@@ -1,17 +1,19 @@
 <?php
-
 namespace Controller\Factory;
+use Interfaces\Parser as Parsers;
+use Models\Clients;
 
-use Interface\Parser;
-
-class GetDataUrl implements Parser
+class GetDataUrls implements Parsers
 {
-    public function __construct()
-    {
-        
+    public $model;   
+
+  
+    public function __construct()    
+    {    
+        $this->model = new Clients(); 
     }
 
-    public function parserUrl()
+    public function getDataUrl()
     {
         $url = $_POST['url_page'];
         $ch = curl_init();
@@ -22,25 +24,25 @@ class GetDataUrl implements Parser
 
     public function getDataTitle()
     {
-        $results =  $this->parserUrl();
+        $results =  $this->getDataUrl();
         preg_match($this->regex_title, $results, $title);
         return str_replace("'", "", $title[1]); 
     }
 
     public function getDataDescription(){
-        $results =  $this->parserUrl();
+        $results =  $this->getDataUrl();
         preg_match($this->regex_description, $results, $description);
         return str_replace("'", "", $description[1]);
     }
 
     public function getDataDate(){
-        $results =  $this->parserUrl();
+        $results =  $this->getDataUrl();
         preg_match($this->regex_date, $results, $date);
         return $date[1];
     }
 
     public function getDataDetails(){
-        $results =  $this->parserUrl();
+        $results =  $this->getDataUrl();
         preg_match_all($this->regex_details, $results, $details);
         return str_replace("'", "", implode (" ",$details[1]));
     }

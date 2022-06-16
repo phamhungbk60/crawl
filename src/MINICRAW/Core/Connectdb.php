@@ -1,4 +1,6 @@
 <?php
+namespace Core;
+
 class Connectdb
 {
     public $conn;

@@ -1,4 +1,7 @@
 <?php
+namespace Models;
+use Core\Connectdb;
+
 class Clients extends Connectdb
 {
     public function insertData($title, $description ,$date , $details)
